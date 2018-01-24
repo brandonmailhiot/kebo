@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Hotkeys from 'react-hot-keys';
 
 import '../styles/Logo.css';
 
