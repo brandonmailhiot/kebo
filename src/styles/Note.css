@@ -1,0 +1,27 @@
+.note-container {
+  height: 100px;
+  width: 100px;
+  background-color: rgba(0,0,0,0.15);
+  text-align: center;
+  border-radius: 50px;
+}
+
+.note-container-pressed {
+  height: 100px;
+  width: 100px;
+  background-color: rgba(0,0,0,0.30);
+  text-align: center;
+  border-radius: 50px;
+}
+
+.note-displayName {
+  color: rgba(255,255,255,0.7);
+  font-size: 32px;
+  margin-top: 29px;
+}
+
+.note-displayName-pressed {
+  color: rgba(255,255,255,1);
+  font-size: 32px;
+  margin-top: 29px;
+}
