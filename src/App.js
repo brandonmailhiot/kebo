@@ -61,7 +61,7 @@ export default class App extends Component {
 
     return (
       <div className="app-container">
-        <Logo />
+        <Logo name='kebo' />
         <div className="controlboard">
           <div className="octaveboard">{ octaveboard }</div>
           <div className="noteboard">{ noteboard }</div>
