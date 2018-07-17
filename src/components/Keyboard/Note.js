@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import Codebeat from 'codebeat';
 import Hotkeys from 'react-hot-keys';
 
-import { keymap } from '../lib.js';
-import '../styles/Note.css';
+import { keymap } from '../../lib';
+import '../../styles/Note.css';
 
 export default class Note extends Component {
   constructor(props) {
@@ -11,30 +10,19 @@ export default class Note extends Component {
 
     this.state = {
       isPressed: false,
-      Codebeat: new Codebeat({})
     };
   }
 
-  onKeyDown = (keyname, event) => {
-    const { pitch, currentOctave } = this.props;
-
-    this.setState({
-      isPressed: true,
-      Codebeat: new Codebeat({
-        notes: `i ${pitch + currentOctave}`
-      }),
-    });
-
-    this.state.Codebeat.play()
+  onKeyDown = (keyname, event, handle) => {
+    const { pitch } = this.props;
+    this.setState({ isPressed: true })
+    this.props.onKeyDown(pitch, keyname, event);
   }
 
   onKeyUp = (keyname, event) => {
-    this.state.Codebeat.stop();
-
-    this.setState({
-      isPressed: false,
-      Codebeat: new Codebeat({}),
-    });
+    const { pitch } = this.props;
+    this.setState({ isPressed: false })
+    this.props.onKeyUp(pitch, keyname, event);
   }
 
   render() {
@@ -55,7 +43,10 @@ export default class Note extends Component {
           <p className={
             isPressed
             ? "note-displayName-pressed"
-            : "note-displayName"}>{ displayName }</p>
+            : "note-displayName"
+          }>
+            { displayName }
+          </p>
         </div>
       </Hotkeys>
     );

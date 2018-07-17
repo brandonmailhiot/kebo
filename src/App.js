@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import SynthJS from 'synth-javascript';
 
-import Note from './components/Note';
-import Octave from './components/Octave';
+import Note from './components/Keyboard/Note';
+import Octave from './components/Keyboard/Octave';
 import Logo from './components/Logo';
 
 import './styles/App.css';
@@ -11,7 +12,10 @@ export default class App extends Component {
     super(props);
 
     this.state = {
+      pressCount: 0,
       currentOctave: 3,
+      SynthJS: new SynthJS({}),
+      input: []
     }
   }
 
@@ -19,8 +23,52 @@ export default class App extends Component {
     this.setState({ currentOctave: octave });
   }
 
+  onKeyDown = (pitch, keyname, event) => {
+    this.state.SynthJS.stop();
+
+    if (this.state.pressCount > 0) {
+      const input = [pitch + this.state.currentOctave, ...this.state.input];
+      this.setState({
+        pressCount: this.state.pressCount + 1,
+        input,
+        SynthJS: new SynthJS({ notes: `i ${input.join(' + ')}` }) 
+      });
+    }
+    else {
+      const note = pitch + this.state.currentOctave;
+      this.setState({
+        pressCount: this.state.pressCount + 1,
+        SynthJS: new SynthJS({ notes: `i ${note}` }),
+        input: [note]
+      });
+    }
+
+    this.state.SynthJS.play()
+  }
+
+  onKeyUp = (pitch, keyname, event) => {
+    this.state.SynthJS.stop();
+
+    if (this.state.pressCount > 1) {
+      const input = this.state.input.filter(note => note !== pitch + this.state.currentOctave);
+      this.setState({
+        pressCount: this.state.pressCount - 1,
+        SynthJS: new SynthJS({ notes: `i ${input.join(' + ')}` }),
+        input
+      });
+      this.state.SynthJS.play();
+    }
+    else {
+      this.setState({
+        pressCount: 0,
+        SynthJS: new SynthJS({ notes: `` }),
+        input: []
+      });
+    }
+  }
+
   render() {
-    const octaveClasses = [0,1,2,3,4,5,6,7];
+    const octaveClasses = [1,2,3,4,5,6,7];
     const noteClasses = [
       'A# B# C# D# E# F# G#',
       'A B C D E F G',
@@ -50,7 +98,8 @@ export default class App extends Component {
           key={note}
           displayName={note}
           pitch={pitch}
-          currentOctave={this.state.currentOctave}
+          onKeyDown={this.onKeyDown}
+          onKeyUp={this.onKeyUp}
         />);
       })
     });
