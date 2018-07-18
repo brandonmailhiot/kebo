@@ -1,0 +1,14 @@
+$linear-gradient: linear-gradient(0deg, #2CFBDD, #4244B9, #D388FD);
+
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+@import 'app';
+@import 'keyboard';
+@import 'logo';
+@import 'note';
+@import 'octave';
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Ubuntu', sans-serif;
+}

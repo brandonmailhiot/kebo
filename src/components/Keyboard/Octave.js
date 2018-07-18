@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Hotkeys from 'react-hot-keys';
 
-import '../../styles/Octave.css';
 
 export default class Octave extends Component {
   onKeyDown = (keyname, event) => {

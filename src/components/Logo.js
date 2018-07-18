@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import '../styles/Logo.css';
-
 export default class Logo extends Component {
   render() {
     return (
