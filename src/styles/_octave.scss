@@ -4,7 +4,8 @@
   width: 100px;
   background-color: rgba(6,10,22,0.98);
   text-align: center;
-  border: 1px solid rgba(0,0,0,0.1)
+  border: 0px solid rgba(0,0,0,0);
+  transition-duration: 0.4s;
 }
 
 .octave-container-pressed {
@@ -13,10 +14,8 @@
   width: 100px;
   background-color: rgba(6,10,22,0.92);
   text-align: center;
-  border-width: 1px;
-  border-bottom-width: 61px;
-  border-style: solid;
-  border-image: $linear-gradient;
+  border-left: 2px solid rgba(255,185,50,0.2);
+  transition-duration: 0.4s;
 }
 
 .octave-displayName {

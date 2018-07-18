@@ -65,11 +65,11 @@ export default class Keyboard extends Component {
   }
 
   render() {
-    const octaveClasses = [1,2,3,4,5,6,7];
+    const octaveClasses = ['octave', 1,2,3,4,5,6,7];
     const noteClasses = [
-      'A# B# C# D# E# F# G#',
-      'A B C D E F G',
-      'A_ B_ C_ D_ E_ F_ G_',
+      'sharp A# B# C# D# E# F# G#',
+      'natural A B C D E F G',
+      'flat A_ B_ C_ D_ E_ F_ G_',
     ];
     const noteboardClasses = [
       'noteboard-sharps',
