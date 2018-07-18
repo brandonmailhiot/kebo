@@ -6,26 +6,29 @@
   text-align: center;
   border: 0px solid rgba(0,0,0,0);
   transition-duration: 0.3s;
-}
 
-.octave-container-pressed {
-  box-sizing: border-box;
-  height: 62px;
-  width: 100px;
-  background-color: rgba(6,10,22,0.92);
-  text-align: center;
-  border-top: 2px solid rgba(255,185,50,0.9);
-  transition-duration: 0.3s;
+  &:nth-of-type(1) {
+    background-color: rgba(33, 219, 126, 0.6);
+    border-style: solid;
+    border-width: 1px;
+    border-bottom-width: 61px;
+  }
+
+  &:nth-of-type(1) .octave-displayName {
+    color: rgba(255,255,255,0.4) !important;
+  }
+
+  &.pressed {
+    background-color: rgba(6,10,22,0.92);
+    border-top: $octave-border-top;
+  }
 }
 
 .octave-displayName {
   color: rgba(255,185,50,0.13);
   font-size: 16px;
   margin-top: 20px;
-}
-
-.octave-displayName-pressed {
-  color: rgba(255,185,50,1);
-  font-size: 16px;
-  margin-top: 20px;
+  &.pressed {
+    color: rgba(255,185,50,1);
+  }
 }

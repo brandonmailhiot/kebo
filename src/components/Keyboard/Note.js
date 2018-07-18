@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Hotkeys from 'react-hot-keys';
+import classNames from 'classnames'
 
 import { keymap } from '../../lib';
 
@@ -34,16 +35,14 @@ export default class Note extends Component {
         onKeyDown={this.onKeyDown}
         onKeyUp={this.onKeyUp}
       >
-        <div className={
-          isPressed
-          ? "note-container-pressed"
-          : "note-container"
-        }>
-          <p className={
-            isPressed
-            ? "note-displayName-pressed"
-            : "note-displayName"
-          }>
+        <div className={classNames({
+          "note-container": true,
+          "pressed": isPressed
+        })}>
+          <p className={classNames({
+            "note-displayName": true,
+            "pressed": isPressed
+          })}>
             { displayName }
           </p>
         </div>

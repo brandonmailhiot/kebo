@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Hotkeys from 'react-hot-keys';
+import classNames from 'classnames'
 
 
 export default class Octave extends Component {
@@ -17,15 +18,14 @@ export default class Octave extends Component {
         keyName={displayName}
         onKeyDown={this.onKeyDown}
       >
-        <div className={
-          +currentOctave === +octave
-          ? "octave-container-pressed"
-          : "octave-container"
-        }>
-          <p className={
-            +currentOctave === +octave
-            ? "octave-displayName-pressed"
-            : "octave-displayName"}>{ displayName }</p>
+        <div className={classNames({
+          "octave-container": true, 
+          "pressed": +currentOctave === +octave
+        })}>
+          <p className={classNames({
+            "octave-displayName": true, 
+            "pressed": +currentOctave === +octave
+          })}>{ displayName }</p>
         </div>
       </Hotkeys>
     );

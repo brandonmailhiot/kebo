@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import SynthJS from 'synth-javascript';
 
-import Note from '../components/Keyboard/Note';
-import Octave from '../components/Keyboard/Octave';
+import Note from './Keyboard/Note';
+import Octave from './Keyboard/Octave';
 
 export default class Keyboard extends Component {
   constructor(props) {
@@ -22,20 +22,25 @@ export default class Keyboard extends Component {
 
   onKeyDown = (pitch, keyname, event) => {
     this.state.SynthJS.stop();
+    const { detune } = this.props;
 
     if (this.state.pressCount > 0) {
       const input = [pitch + this.state.currentOctave, ...this.state.input];
       this.setState({
         pressCount: this.state.pressCount + 1,
         input,
-        SynthJS: new SynthJS({ notes: `i ${input.join(' + ')}` }) 
+        SynthJS: new SynthJS({ 
+          notes: `@detune ${detune}, i ${input.join(' + ')}`
+        }) 
       });
     }
     else {
       const note = pitch + this.state.currentOctave;
       this.setState({
         pressCount: this.state.pressCount + 1,
-        SynthJS: new SynthJS({ notes: `i ${note}` }),
+        SynthJS: new SynthJS({
+          notes: `@detune ${detune}, i ${note}`
+        }),
         input: [note]
       });
     }
@@ -45,12 +50,13 @@ export default class Keyboard extends Component {
 
   onKeyUp = (pitch, keyname, event) => {
     this.state.SynthJS.stop();
+    const { detune } = this.props;
 
     if (this.state.pressCount > 1) {
       const input = this.state.input.filter(note => note !== pitch + this.state.currentOctave);
       this.setState({
         pressCount: this.state.pressCount - 1,
-        SynthJS: new SynthJS({ notes: `i ${input.join(' + ')}` }),
+        SynthJS: new SynthJS({ notes: `@detune ${detune}, i ${input.join(' + ')}` }),
         input
       });
       this.state.SynthJS.play();
@@ -65,7 +71,7 @@ export default class Keyboard extends Component {
   }
 
   render() {
-    const octaveClasses = ['octave', 1,2,3,4,5,6,7];
+    const octaveClasses = 'octave 1 2 3 4 5 6 7'.split(' ');
     const noteClasses = [
       'sharp A# B# C# D# E# F# G#',
       'natural A B C D E F G',
@@ -78,11 +84,10 @@ export default class Keyboard extends Component {
     ];
 
     const octaveboard = octaveClasses.map(octave => {
-      const name = octave.toString();
       return (
         <Octave
-          key={name}
-          displayName={name}
+          key={octave}
+          displayName={octave}
           octave={octave}
           currentOctave={this.state.currentOctave}
           setOctave={this.setOctave}

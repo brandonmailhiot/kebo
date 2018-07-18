@@ -1,8 +1,15 @@
+$dark-bg-inner: rgba(25,25,40,1);
+$dark-bg-outer: rgba(8,8,15,1);
 $linear-gradient: linear-gradient(0deg, rgb(24, 110, 240), rgb(124, 43, 255), rgb(255, 52, 137));
+$blue: rgb(32, 194, 186);
+$keyboard-border-bottom: 2px solid $blue;
+$orange: rgba(255,185,50,0.9);
+$octave-border-top: 2px solid $orange;
 
 @import url('https://fonts.googleapis.com/css?family=Ubuntu');
 @import 'app';
 @import 'keyboard';
+@import 'detuner';
 @import 'logo';
 @import 'note';
 @import 'octave';

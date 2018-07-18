@@ -1,5 +1,5 @@
 .app-container {
   width: 100vw;
   height: 100vh;
-  background-image: radial-gradient(rgba(25,25,40,1), rgba(8,8,15,1));
+  background-image: radial-gradient($dark-bg-inner, $dark-bg-outer);
 }

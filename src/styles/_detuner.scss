@@ -1,0 +1,49 @@
+.detuner {
+  height: 250px;
+  width: 100px;
+  background-image: linear-gradient($dark-bg-inner, $dark-bg-outer);
+  position: absolute;
+  right: 260px;
+  top: 220px;
+  border-bottom: $keyboard-border-bottom;
+
+  .title {
+    box-sizing: border-box;
+    position: relative;
+    top: -10px;
+    padding-top: 25px;
+    text-align: center;
+    color: rgba($blue, 0.5);
+    font-size: 12px;
+    height: 64px;
+    width: 100px;
+    background-color: rgba(0,0,0,0.3);
+  }
+
+  .slider {
+    transform: rotateY(180deg);
+
+    &.rc-slider {
+      height: 120px;
+      width: 5px;
+      background-color: $dark-bg-outer;
+      border-radius: 50px;
+      position: relative;
+      top: 75px;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(180deg);
+      border: thin solid rgba(255,255,255,0.1);
+    }
+
+    .rc-slider-handle {
+      width: 15px;
+      height: 15px;
+      background-color: $blue;
+      border-radius: 50px;
+      margin-left: -5px;
+      border: 4px solid lighten($dark-bg-inner, 10%);
+      box-sizing: border-box;
+      box-shadow: 0px 0px 10px 0px rgba(0,0,0,1);
+    }
+  }
+}
