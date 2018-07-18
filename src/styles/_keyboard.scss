@@ -6,26 +6,26 @@
   background-image: $linear-gradient;
   width: max-content;
   box-shadow: 20px 15px 75px 5px rgba(0,0,0,1);
-  border-bottom: 2px solid rgba(33, 219, 126, 0.6);
+  border-bottom: 2px solid rgba(0, 197, 138, 0.6);
 }
 
 .octave-container:nth-of-type(1) .octave-displayName {
-  color: rgba(0,0,0,0.6) !important;
+  color: rgba(0,0,0,1) !important;
 }
 
 .note-container:nth-of-type(1) .note-displayName {
-  color: rgba(0,0,0,0.6) !important;
+  color: rgba(0,0,0,1) !important;
 }
 
 .octave-container:nth-of-type(1) {
-  background-color: rgba(255,185,50,0.6);
+  background-color: rgba(33, 219, 126, 0.6);
   border-style: solid;
   border-width: 1px;
   border-bottom-width: 61px;
 }
 
 .note-container:nth-of-type(1) {
-  background-color: rgba(255,185,50,0.6);
+  background-color: rgba(33, 219, 126, 0.6);
   border-style: solid;
   border-width: 1px;
   border-bottom-width: 61px;
