@@ -101,7 +101,7 @@ export default class Keyboard extends Component {
         return (
           <Note
             key={note}
-            displayName={note}
+            displayName={note.replace('#', '♯').replace('_', '♭')}
             pitch={pitch}
             onKeyDown={this.onKeyDown}
             onKeyUp={this.onKeyUp}
