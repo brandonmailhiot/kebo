@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import Slider, { Range } from 'rc-slider';
+import Slider from 'rc-slider';
+
+const createSliderWithTooltip = Slider.createSliderWithTooltip;
+const SliderTip = createSliderWithTooltip(Slider);
 
 export default class Detuner extends Component {
   onDetune = (value) => {
@@ -10,7 +13,7 @@ export default class Detuner extends Component {
     return (
       <div className="detuner">
         <h2 className={"title"}>Detuner</h2>
-        <Slider 
+        <SliderTip
           className={"slider"}
           vertical={true}
           min={-1000}
