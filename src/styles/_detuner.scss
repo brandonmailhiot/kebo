@@ -1,7 +1,8 @@
 .detuner {
   height: 250px;
   width: 100px;
-  background-image: linear-gradient($dark-bg-inner, $dark-bg-outer);
+  background-image: linear-gradient(0deg, rgba(24, 110, 240, 0.09), rgba(124, 43, 255, 0.09), rgba(255, 52, 137, 0.09));
+  background-color: rgba(6, 10, 22, 0.92);
   position: absolute;
   right: 260px;
   top: 220px;
@@ -10,14 +11,14 @@
   .title {
     box-sizing: border-box;
     position: relative;
-    top: -10px;
-    padding-top: 25px;
+    top: -12px;
+    padding-top: 22px;
     text-align: center;
-    color: rgba($blue, 0.5);
-    font-size: 12px;
+    color: rgba($orange, 1);
+    font-size: 14px;
     height: 64px;
     width: 100px;
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(6, 10, 22, 0.7);
   }
 
   .slider {
@@ -26,22 +27,22 @@
     &.rc-slider {
       height: 120px;
       width: 5px;
-      background-color: $dark-bg-outer;
+      background-color: rgba($dark-bg-outer, 0.2);
       border-radius: 50px;
       position: relative;
       top: 75px;
       left: 50%;
       transform: translate(-50%, -50%) rotate(180deg);
-      border: thin solid rgba(255,255,255,0.1);
+      border: 2px solid rgba(0,0,0,0.3);
     }
 
     .rc-slider-handle {
       width: 15px;
       height: 15px;
-      background-color: $blue;
+      background-color: $orange;
       border-radius: 50px;
       margin-left: -5px;
-      border: 4px solid lighten($dark-bg-inner, 10%);
+      border: 4px solid rgba($dark-bg-inner, 0.9);
       box-sizing: border-box;
       box-shadow: 0px 0px 10px 0px rgba(0,0,0,1);
     }
