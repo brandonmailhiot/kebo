@@ -6,13 +6,12 @@ const SliderTip = createSliderWithTooltip(Slider);
 
 export default class Detuner extends Component {
   onDetune = (value) => {
-    console.log(value)
     this.props.onDetune(value);
   }
   render() {
     return (
       <div className="detuner">
-        <h2 className={"title"}>Detuner</h2>
+        <h2 className={"title"}>Detune</h2>
         <SliderTip
           className={"slider"}
           vertical={true}
@@ -20,6 +19,11 @@ export default class Detuner extends Component {
           max={1000}
           defaultValue={this.props.defaultDetune}
           onChange={this.onDetune}
+          tipProps={{ 
+            placement: 'top', 
+            prefixCls: 'rc-slider-tooltip', 
+            overlay: '10'
+            }}
         />
       </div>
     );
