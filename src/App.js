@@ -10,7 +10,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="app-container">
-        <Logo name='🔥 kebo' />
+        <Logo name='🎹 kebo' />
         <Keyboard />
       </div>
     );
