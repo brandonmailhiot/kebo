@@ -29,6 +29,7 @@ export default class DetuneSlider extends Component {
           vertical={true}
           min={-1200}
           max={1200}
+          step={240}
           defaultValue={this.props.defaultDetune}
           onChange={this.onDetune}
           marks={marks}

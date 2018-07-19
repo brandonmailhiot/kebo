@@ -29,6 +29,7 @@ export default class GainSlider extends Component {
           vertical={true}
           min={0}
           max={1000}
+          step={100}
           defaultValue={this.props.defaultGain}
           onChange={this.onGain}
           marks={marks}

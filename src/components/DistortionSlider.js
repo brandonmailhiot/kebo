@@ -29,6 +29,7 @@ export default class DistortionSlider extends Component {
           vertical={true}
           min={0}
           max={1000}
+          step={100}
           defaultValue={this.props.defaultDistortion}
           onChange={this.onDistortion}
           marks={marks}
