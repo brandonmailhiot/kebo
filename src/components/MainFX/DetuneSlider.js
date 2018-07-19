@@ -30,20 +30,24 @@ export default class DetuneSlider extends Component {
       90: '-',
       100: '-100%'
     }
+    const min = -1200.00;
+    const max = 1200.00;
+
+    const step = (max - min) / Object.keys(marks).length.toFixed(2);
 
     return (
       <div className="detune-slider">
         <h2 className={classNames({
             "title": true,
-            "active": this.state.detune >= 218.18181818 || this.state.detune <= -218.18181818
+            "active": this.state.detune >= step || this.state.detune <= -step
           })
         }>Pitch</h2>
         <Slider
           className={"slider"}
           vertical={true}
-          min={-1200}
-          max={1200}
-          step={218.18181818}
+          min={min}
+          max={max}
+          step={step}
           defaultValue={this.props.defaultDetune}
           onChange={this.onDetune}
           marks={marks}

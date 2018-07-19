@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import Slider from 'rc-slider';
 import classNames from 'classnames';
 
-export default class DistortionSlider extends Component {
+export default class ReverbSlider extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      distortion: this.props.distortion
+      reverb: this.props.reverb
     };
   }
 
-  onDistortion = (value) => {
-    this.setState({distortion: value});
-    this.props.onDistortion(value);
+  onReverb = (value) => {
+    this.setState({reverb: value});
+    this.props.onReverb(value);
   }
 
   render() {
@@ -30,22 +30,25 @@ export default class DistortionSlider extends Component {
       90: '-',
       100: '0%'
     }
+    const min = 0.01;
+    const max = 25.00;
+    const step = (max - min) / Object.keys(marks).length.toFixed(2);
 
     return (
-      <div className="distortion-slider">
+      <div className="reverb-slider">
         <h2 className={classNames({
             "title": true,
-            "active": this.state.distortion >= 100,
-          })
-        }>Fuzz</h2>
+            "active": this.state.reverb >= step,
+          })}
+        >Reverb</h2>
         <Slider
           className={"slider"}
           vertical={true}
-          min={0}
-          max={1000}
-          step={100}
-          defaultValue={this.props.defaultDistortion}
-          onChange={this.onDistortion}
+          min={min}
+          max={max}
+          step={step}
+          defaultValue={this.props.defaultReverb}
+          onChange={this.onReverb}
           marks={marks}
         />
       </div>

@@ -30,20 +30,23 @@ export default class GainSlider extends Component {
       90: '-',
       100: '0%'
     }
+    const min = 0.00;
+    const max = 1000.00;
+    const step = (max - min) / Object.keys(marks).length.toFixed(2);
 
     return (
       <div className="gain-slider">
         <h2 className={classNames({
             "title": true,
-            "active": this.state.gain >= 100,
+            "active": this.state.gain >= step,
           })}
         >Volume</h2>
         <Slider
           className={"slider"}
           vertical={true}
-          min={0}
-          max={1000}
-          step={100}
+          min={min}
+          max={max}
+          step={step}
           defaultValue={this.props.defaultGain}
           onChange={this.onGain}
           marks={marks}

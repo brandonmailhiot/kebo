@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 
 import Keyboard from './components/Keyboard';
-import DetuneSlider from './components/DetuneSlider';
-import GainSlider from './components/GainSlider';
-import DistortionSlider from './components/DistortionSlider';
+import MainFX from './components/MainFX';
 import Logo from './components/Logo';
 
 import './styles/index.scss';
@@ -15,7 +13,8 @@ export default class App extends Component {
     this.state = {
       detune: 0,
       gain: 500,
-      distortion: 0
+      distortion: 0,
+      reverb: 0.01
     };
   }
 
@@ -31,6 +30,10 @@ export default class App extends Component {
     this.setState({ distortion: amount });
   }
 
+  onReverb = (amount) => {
+    this.setState({ reverb: amount });
+  }
+
   render() {
     return (
       <div className="app-container">
@@ -40,18 +43,17 @@ export default class App extends Component {
             detune={this.state.detune}
             gain={this.state.gain}
             distortion={this.state.distortion}
+            reverb={this.state.reverb}
           />
-          <DetuneSlider
-            defaultDetune={this.state.detune}
+          <MainFX 
+            detune={this.state.detune}
+            gain={this.state.gain}
+            distortion={this.state.distortion}
+            reverb={this.state.reverb}
             onDetune={this.onDetune}
-          />
-          <GainSlider
-            defaultGain={this.state.gain}
             onGain={this.onGain}
-          />
-          <DistortionSlider
-            defaultDistortion={this.state.distortion}
             onDistortion={this.onDistortion}
+            onReverb={this.onReverb}
           />
         </div>
       </div>

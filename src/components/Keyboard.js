@@ -22,8 +22,9 @@ export default class Keyboard extends Component {
 
   onKeyDown = (pitch, keyname, event) => {
     this.state.SynthJS.stop();
-    const { detune, gain, distortion } = this.props;
-    const distortionEffect = distortion > 0 ? `${distortion}/4x` : `0/none`;
+    const { detune, gain, distortion, reverb } = this.props;
+    const distortionEffect = distortion > 0 ? `@distortion ${distortion}/4x, ` : ``;
+    const reverbEffect = reverb > 1 ? `@reverb 4/${reverb}/5, ` : ``;
 
     if (this.state.pressCount > 0) {
       const input = [pitch + this.state.currentOctave, ...this.state.input];
@@ -34,7 +35,8 @@ export default class Keyboard extends Component {
           notes: `
             @detune ${detune},
             @gain ${gain}, 
-            @distortion ${distortionEffect},
+            ${distortionEffect}
+            ${reverbEffect}
             i ${input.join(' + ')}
           `
         }) 
@@ -48,7 +50,8 @@ export default class Keyboard extends Component {
           notes: `
             @detune ${detune},
             @gain ${gain},
-            @distortion ${distortionEffect},
+            ${distortionEffect}
+            ${reverbEffect}
             i ${note}
           `
         }),
@@ -61,8 +64,9 @@ export default class Keyboard extends Component {
 
   onKeyUp = (pitch, keyname, event) => {
     this.state.SynthJS.stop();
-    const { detune, gain, distortion } = this.props;
-    const distortionEffect = distortion > 0 ? `${distortion}/4x` : `0/none`;
+    const { detune, gain, distortion, reverb } = this.props;
+    const distortionEffect = distortion > 0 ? `@distortion ${distortion}/4x, ` : ``;
+    const reverbEffect = reverb > 1 ? `@reverb 4/${reverb}/5, ` : ``;
 
     if (this.state.pressCount > 1) {
       const input = this.state.input.filter(note => note !== pitch + this.state.currentOctave);
@@ -72,7 +76,8 @@ export default class Keyboard extends Component {
           notes: `
             @detune ${detune},
             @gain ${gain},
-            @distortion ${distortionEffect},
+            ${distortionEffect}
+            ${reverbEffect}
             i ${input.join(' + ')}
           `
         }),
