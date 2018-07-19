@@ -6,6 +6,7 @@ export const keymap = {
   'e#': 't',
   'f#': 'y',
   'g#': 'u',
+
   'a': 'a',
   'b': 's',
   'c': 'd',
@@ -13,6 +14,7 @@ export const keymap = {
   'e': 'g',
   'f': 'h',
   'g': 'j',
+  
   'a_': 'z',
   'b_': 'x',
   'c_': 'c',

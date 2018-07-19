@@ -9,16 +9,23 @@ export default class Detuner extends Component {
     this.props.onDetune(value);
   }
   render() {
+    const marks = {
+      0: '-1.2k ¢',
+      50: '0k ¢',
+      100: '1.2k ¢'
+    }
+
     return (
       <div className="detuner">
         <h2 className={"title"}>Detune</h2>
         <SliderTip
           className={"slider"}
           vertical={true}
-          min={-1000}
-          max={1000}
+          min={-1200}
+          max={1200}
           defaultValue={this.props.defaultDetune}
           onChange={this.onDetune}
+          marks={marks}
           tipProps={{ 
             placement: 'top', 
             prefixCls: 'rc-slider-tooltip', 
