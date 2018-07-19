@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
 import Slider from 'rc-slider';
+import classNames from 'classnames';
 
 export default class GainSlider extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      gain: this.props.gain
+    };
+  }
+
   onGain = (value) => {
+    this.setState({gain: value});
     this.props.onGain(value);
   }
 
@@ -23,7 +33,11 @@ export default class GainSlider extends Component {
 
     return (
       <div className="gain-slider">
-        <h2 className={"title"}>Volume</h2>
+        <h2 className={classNames({
+            "title": true,
+            "active": this.state.gain >= 100,
+          })}
+        >Volume</h2>
         <Slider
           className={"slider"}
           vertical={true}

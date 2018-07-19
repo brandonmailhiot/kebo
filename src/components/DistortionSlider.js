@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
 import Slider from 'rc-slider';
+import classNames from 'classnames';
 
 export default class DistortionSlider extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      distortion: this.props.distortion
+    };
+  }
+
   onDistortion = (value) => {
+    this.setState({distortion: value});
     this.props.onDistortion(value);
   }
 
@@ -23,7 +33,11 @@ export default class DistortionSlider extends Component {
 
     return (
       <div className="distortion-slider">
-        <h2 className={"title"}>Fuzz</h2>
+        <h2 className={classNames({
+            "title": true,
+            "active": this.state.distortion >= 100,
+          })
+        }>Fuzz</h2>
         <Slider
           className={"slider"}
           vertical={true}

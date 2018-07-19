@@ -4,7 +4,7 @@
   background-image: linear-gradient(0deg, rgba(24, 110, 240, 0.09), rgba(124, 43, 255, 0.09), rgba(255, 52, 137, 0.09));
   background-color: rgba(6, 10, 22, 0.92);
   position: relative;
-  left: 1240px;
+  left: 1188px;
   top: -551px;
   border-bottom: 2px solid $purple;
 
@@ -13,11 +13,14 @@
     position: relative;
     padding-top: 24px;
     text-align: center;
-    color: rgba($purple, 1);
+    color: rgba($purple, 0.5);
     font-size: 14px;
     height: 64px;
     width: 100px;
     background-color: rgba(6, 10, 22, 0.7);
+    &.active {
+      color: rgba($purple, 1)
+    }
   }
 
   .slider {

@@ -1,7 +1,7 @@
 .octave-container {
   box-sizing: border-box;
   height: 62px;
-  width: 100px;
+  width: 80px;
   background-color: rgba(6,10,22,0.98);
   text-align: center;
   border: 0px solid rgba(0,0,0,0);
@@ -27,7 +27,7 @@
 }
 
 .octave-displayName {
-  color: rgba(255,185,50,0.13);
+  color: rgba(255,185,50,0.3);
   font-size: 16px;
   margin-top: 20px;
   &.pressed {
