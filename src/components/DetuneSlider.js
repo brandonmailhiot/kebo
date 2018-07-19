@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import Slider from 'rc-slider';
 
-const createSliderWithTooltip = Slider.createSliderWithTooltip;
-const SliderTip = createSliderWithTooltip(Slider);
-
-export default class Detuner extends Component {
+export default class DetuneSlider extends Component {
   onDetune = (value) => {
     this.props.onDetune(value);
   }
@@ -16,9 +13,9 @@ export default class Detuner extends Component {
     }
 
     return (
-      <div className="detuner">
+      <div className="detune-slider">
         <h2 className={"title"}>Detune</h2>
-        <SliderTip
+        <Slider
           className={"slider"}
           vertical={true}
           min={-1200}
@@ -26,11 +23,6 @@ export default class Detuner extends Component {
           defaultValue={this.props.defaultDetune}
           onChange={this.onDetune}
           marks={marks}
-          tipProps={{ 
-            placement: 'top', 
-            prefixCls: 'rc-slider-tooltip', 
-            overlay: '10'
-            }}
         />
       </div>
     );

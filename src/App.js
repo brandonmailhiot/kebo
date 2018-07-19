@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Keyboard from './components/Keyboard';
-import Detuner from './components/Detuner';
+import DetuneSlider from './components/DetuneSlider';
 import Logo from './components/Logo';
 
 import './styles/index.scss';
@@ -22,13 +22,15 @@ export default class App extends Component {
     return (
       <div className="app-container">
         <Logo name='kebo' />
-        <Keyboard 
-          detune={this.state.detune}
-        />
-        <Detuner
-          defaultDetune={this.state.detune}
-          onDetune={this.onDetune}
-        />
+        <div className={"sound-panel"}>
+          <Keyboard 
+            detune={this.state.detune}
+          />
+          <DetuneSlider
+            defaultDetune={this.state.detune}
+            onDetune={this.onDetune}
+          />
+        </div>
       </div>
     );
   }

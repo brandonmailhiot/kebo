@@ -2,4 +2,10 @@
   width: 100vw;
   height: 100vh;
   background-image: radial-gradient($dark-bg-inner, $dark-bg-outer);
+  position: absolute;
+}
+
+.sound-panel {
+  width: max-content;
+  position: absolute;
 }
