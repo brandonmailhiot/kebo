@@ -10,9 +10,9 @@ export default class Detuner extends Component {
   }
   render() {
     const marks = {
-      0: '-1.2k ¢',
+      0: '1.2k ¢',
       50: '0k ¢',
-      100: '1.2k ¢'
+      100: '-1.2k ¢'
     }
 
     return (
