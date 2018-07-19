@@ -5,20 +5,20 @@ export default class GainSlider extends Component {
   onGain = (value) => {
     this.props.onGain(value);
   }
-  
+
   render() {
     const marks = {
-      0: '1k db',
+      0: '100%',
       10: '-',
       20: '-',
       30: '-',
       40: '-',
-      50: '0.5k db',
+      50: '50%',
       60: '-',
       70: '-',
       80: '-',
       90: '-',
-      100: '0k db'
+      100: '0%'
     }
 
     return (

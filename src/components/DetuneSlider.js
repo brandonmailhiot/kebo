@@ -8,17 +8,17 @@ export default class DetuneSlider extends Component {
 
   render() {
     const marks = {
-      0: '1.2k ¢',
+      0: '100%',
       10: '-',
       20: '-',
       30: '-',
       40: '-',
-      50: '0k ¢',
+      50: '0%',
       60: '-',
       70: '-',
       80: '-',
       90: '-',
-      100: '-1.2k ¢'
+      100: '-100%'
     }
 
     return (
