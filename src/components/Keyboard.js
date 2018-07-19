@@ -22,7 +22,8 @@ export default class Keyboard extends Component {
 
   onKeyDown = (pitch, keyname, event) => {
     this.state.SynthJS.stop();
-    const { detune } = this.props;
+    const { detune, gain, distortion } = this.props;
+    const distortionEffect = distortion > 0 ? `${distortion}/4x` : `0/none`;
 
     if (this.state.pressCount > 0) {
       const input = [pitch + this.state.currentOctave, ...this.state.input];
@@ -30,7 +31,12 @@ export default class Keyboard extends Component {
         pressCount: this.state.pressCount + 1,
         input,
         SynthJS: new SynthJS({ 
-          notes: `@detune ${detune}, i ${input.join(' + ')}`
+          notes: `
+            @detune ${detune},
+            @gain ${gain}, 
+            @distortion ${distortionEffect},
+            i ${input.join(' + ')}
+          `
         }) 
       });
     }
@@ -39,7 +45,12 @@ export default class Keyboard extends Component {
       this.setState({
         pressCount: this.state.pressCount + 1,
         SynthJS: new SynthJS({
-          notes: `@detune ${detune}, i ${note}`
+          notes: `
+            @detune ${detune},
+            @gain ${gain},
+            @distortion ${distortionEffect},
+            i ${note}
+          `
         }),
         input: [note]
       });
@@ -50,13 +61,21 @@ export default class Keyboard extends Component {
 
   onKeyUp = (pitch, keyname, event) => {
     this.state.SynthJS.stop();
-    const { detune } = this.props;
+    const { detune, gain, distortion } = this.props;
+    const distortionEffect = distortion > 0 ? `${distortion}/4x` : `0/none`;
 
     if (this.state.pressCount > 1) {
       const input = this.state.input.filter(note => note !== pitch + this.state.currentOctave);
       this.setState({
         pressCount: this.state.pressCount - 1,
-        SynthJS: new SynthJS({ notes: `@detune ${detune}, i ${input.join(' + ')}` }),
+        SynthJS: new SynthJS({ 
+          notes: `
+            @detune ${detune},
+            @gain ${gain},
+            @distortion ${distortionEffect},
+            i ${input.join(' + ')}
+          `
+        }),
         input
       });
       this.state.SynthJS.play();
