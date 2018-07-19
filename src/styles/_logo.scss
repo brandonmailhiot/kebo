@@ -2,6 +2,23 @@
   position: absolute;
   top: 0px;
   left: 40px;
-  font-size: 32px;
-  color: rgb(79, 255, 240);
+  font-size: 48px;
+  color: white;
+  background-color: black;
+  box-shadow: 45px 0px 150px 0px black;
+  padding: 250px 50px 80px 260px;
+  left: -265px;
+  top: -304px;
+  transform: rotate(45deg);
+
+  p {
+    position: relative;
+    top: -123px;
+    left: 45px;
+    transform: rotate(-45deg);
+    color: white;
+    padding: 0px 10px;
+    text-shadow: 4px 0px 0px #3bdbc6;
+    font-size: 40px;
+  }
 }
