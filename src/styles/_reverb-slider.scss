@@ -1,11 +1,11 @@
 .reverb-slider {
-  height: 250px;
+  height: 248px;
   width: 100px;
   background-image: linear-gradient(0deg, rgba(24, 110, 240, 0.09), rgba(124, 43, 255, 0.09), rgba(255, 52, 137, 0.09));
   background-color: rgba(6, 10, 22, 0.92);
   position: relative;
   left: 1288px;
-  top: -814px;
+  top: -806px;
   border-bottom: 2px solid $orange;
 
   .title {
@@ -15,9 +15,9 @@
     text-align: center;
     color: rgba($orange, 0.5);
     font-size: 14px;
-    height: 64px;
+    height: 62px;
     width: 100px;
-    background-color: rgba(6, 10, 22, 0.7);
+    background-color: rgba(6, 10, 22, 0.45);
     transition-duration: 0.5s;
     &.active {
       color: rgba($orange, 1)

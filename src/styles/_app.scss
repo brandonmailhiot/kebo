@@ -1,7 +1,7 @@
 .app-container {
   width: 100vw;
   height: 100vh;
-  background-image: radial-gradient($dark-bg-inner, $dark-bg-outer);
+  background-image: linear-gradient(darken($purple, 56%), darken($blue, 45%));
   position: absolute;
 }
 

@@ -2,12 +2,12 @@
   box-sizing: border-box;
   height: 62px;
   width: 80px;
-  background-color: rgba(6,10,22,0.98);
+  background-color: rgba(6,10,22,0.95);
   text-align: center;
   border: 0px solid rgba(0,0,0,0);
 
   &.pressed {
-    background-color: rgba(6,10,22,0.92);
+    background-color: rgba(6,10,22,0.91);
     border-top: $octave-border-top;
     position: relative;
     top: 20px;
