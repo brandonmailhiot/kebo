@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { HotKeys } from 'react-hotkeys';
 import SynthJS from 'synth-javascript';
 
 import Note from './Keyboard/Note';
 import Octave from './Keyboard/Octave';
+
+import { keyMap } from '../keymap';
 
 export default class Keyboard extends Component {
   constructor(props) {
@@ -20,11 +23,22 @@ export default class Keyboard extends Component {
     this.setState({ currentOctave: octave });
   }
 
-  onKeyDown = (pitch, keyname, event) => {
+  onKeyDown = (event) => {
+    if (event.repeat) return;
+
     this.state.SynthJS.stop();
     const { detune, gain, distortion, reverb } = this.props;
     const distortionEffect = distortion > 0 ? `@distortion ${distortion}/4x, ` : ``;
     const reverbEffect = reverb > 1 ? `@reverb 4/${reverb}/5, ` : ``;
+
+    let pitch;
+    Object.keys(keyMap.keys.notes).forEach(key => { 
+      if (keyMap.keys.notes[key].sequence === event.key) {
+        pitch = key.substr(0, key.length - 2);
+      }
+    })
+
+    if (this.state.input.includes(pitch)) return;
 
     if (this.state.pressCount > 0) {
       const input = [pitch + this.state.currentOctave, ...this.state.input];
@@ -62,11 +76,22 @@ export default class Keyboard extends Component {
     this.state.SynthJS.play()
   }
 
-  onKeyUp = (pitch, keyname, event) => {
+  onKeyUp = (event) => {
+    if (event.repeat) return;
+
     this.state.SynthJS.stop();
     const { detune, gain, distortion, reverb } = this.props;
     const distortionEffect = distortion > 0 ? `@distortion ${distortion}/4x, ` : ``;
     const reverbEffect = reverb > 1 ? `@reverb 4/${reverb}/5, ` : ``;
+
+    let pitch;
+    Object.keys(keyMap.keys.notes).forEach(key => { 
+      if (keyMap.keys.notes[key].sequence === event.key) {
+        pitch = key.substr(0, key.length - 2);
+      }
+    })
+
+    if (this.state.input.includes(pitch)) return;
 
     if (this.state.pressCount > 1) {
       const input = this.state.input.filter(note => note !== pitch + this.state.currentOctave);
@@ -112,9 +137,6 @@ export default class Keyboard extends Component {
         <Octave
           key={octave}
           displayName={octave}
-          octave={octave}
-          currentOctave={this.state.currentOctave}
-          setOctave={this.setOctave}
         />
       );
     });
@@ -138,10 +160,74 @@ export default class Keyboard extends Component {
       return <div key={i} className={ noteboardClasses[i] }>{ noteClass }</div>
     });
 
+    const notes_handlers = {
+      'a#Down': this.onKeyDown,
+      'b#Down': this.onKeyDown,
+      'c#Down': this.onKeyDown,
+      'd#Down': this.onKeyDown,
+      'e#Down': this.onKeyDown,
+      'f#Down': this.onKeyDown,
+      'g#Down': this.onKeyDown,
+
+      'aDown': this.onKeyDown,
+      'bDown': this.onKeyDown,
+      'cDown': this.onKeyDown,
+      'dDown': this.onKeyDown,
+      'eDown': this.onKeyDown,
+      'fDown': this.onKeyDown,
+      'gDown': this.onKeyDown,
+      
+      'a_Down': this.onKeyDown,
+      'b_Down': this.onKeyDown,
+      'c_Down': this.onKeyDown,
+      'd_Down': this.onKeyDown,
+      'e_Down': this.onKeyDown,
+      'f_Down': this.onKeyDown,
+      'g_Down': this.onKeyDown,
+
+      'a#Up': this.onKeyUp,
+      'b#Up': this.onKeyUp,
+      'c#Up': this.onKeyUp,
+      'd#Up': this.onKeyUp,
+      'e#Up': this.onKeyUp,
+      'f#Up': this.onKeyUp,
+      'g#Up': this.onKeyUp,
+
+      'aUp': this.onKeyUp,
+      'bUp': this.onKeyUp,
+      'cUp': this.onKeyUp,
+      'dUp': this.onKeyUp,
+      'eUp': this.onKeyUp,
+      'fUp': this.onKeyUp,
+      'gUp': this.onKeyUp,
+      
+      'a_Up': this.onKeyUp,
+      'b_Up': this.onKeyUp,
+      'c_Up': this.onKeyUp,
+      'd_Up': this.onKeyUp,
+      'e_Up': this.onKeyUp,
+      'f_Up': this.onKeyUp,
+      'g_Up': this.onKeyUp,
+    };
+
+    const octaves_handlers = {
+      '1': this.setOctave,
+      '2': this.setOctave,
+      '3': this.setOctave,
+      '4': this.setOctave,
+      '5': this.setOctave,
+      '6': this.setOctave,
+      '7': this.setOctave
+    }
+
     return (
       <div className="keyboard">
-        <div className="octaveboard">{ octaveboard }</div>
-        <div className="noteboard">{ noteboard }</div>
+        <HotKeys keyMap={keyMap.keys.octaves} handlers={octaves_handlers}>
+          <div className="octaveboard">{ octaveboard }</div>
+        </HotKeys>
+        <HotKeys keyMap={keyMap.keys.notes} handlers={notes_handlers}>
+          <div className="noteboard">{ noteboard }</div>
+        </HotKeys>
       </div>
     );
   }

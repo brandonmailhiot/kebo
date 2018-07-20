@@ -38,7 +38,7 @@
     "react": "^16.4.1",
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.4.1",
-    "react-hot-keys": "~1.2.0",
+    "react-hotkeys": "^1.1.4",
     "sw-precache-webpack-plugin": "0.11.4",
     "synth-javascript": "^1.2.0",
     "url-loader": "0.6.2",
