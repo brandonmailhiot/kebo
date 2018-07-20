@@ -19,8 +19,8 @@ export default class Keyboard extends Component {
     }
   }
 
-  setOctave = (octave) => {
-    this.setState({ currentOctave: octave });
+  setOctave = (event) => {
+    this.setState({ currentOctave: event.key });
   }
 
   onKeyDown = (event) => {
@@ -37,8 +37,6 @@ export default class Keyboard extends Component {
         pitch = key.substr(0, key.length - 2);
       }
     })
-
-    if (this.state.input.includes(pitch)) return;
 
     if (this.state.pressCount > 0) {
       const input = [pitch + this.state.currentOctave, ...this.state.input];
@@ -89,9 +87,7 @@ export default class Keyboard extends Component {
       if (keyMap.keys.notes[key].sequence === event.key) {
         pitch = key.substr(0, key.length - 2);
       }
-    })
-
-    if (this.state.input.includes(pitch)) return;
+    });
 
     if (this.state.pressCount > 1) {
       const input = this.state.input.filter(note => note !== pitch + this.state.currentOctave);
@@ -132,30 +128,29 @@ export default class Keyboard extends Component {
       'noteboard-flats',
     ];
 
-    const octaveboard = octaveClasses.map(octave => {
+    const octaveboard = (currentOctave) => octaveClasses.map(octave => {
       return (
         <Octave
           key={octave}
           displayName={octave}
+          currentOctave={currentOctave}
+          octave={octave}
         />
       );
     });
 
-    let noteboard = noteClasses.map(notes => {
-      return notes.split(' ').map(note => {
-        const pitch = note.toLowerCase();
-        return (
-          <Note
-            key={note}
-            displayName={note.replace('#', '♯').replace('_', '♭')}
-            pitch={pitch}
-            onKeyDown={this.onKeyDown}
-            onKeyUp={this.onKeyUp}
-          />
-        );
-      })
-    });
-
+    let noteboard = noteClasses.map(notes => notes.split(' ').map(note => {
+      const pitch = note.toLowerCase();
+      return (
+        <Note
+          key={note}
+          displayName={note.replace('#', '♯').replace('_', '♭')}
+          pitch={pitch}
+          input={this.state.input}
+        />
+      );
+    }));
+    
     noteboard = noteboard.map((noteClass, i) => {
       return <div key={i} className={ noteboardClasses[i] }>{ noteClass }</div>
     });
@@ -218,12 +213,12 @@ export default class Keyboard extends Component {
       '5': this.setOctave,
       '6': this.setOctave,
       '7': this.setOctave
-    }
+    };
 
     return (
       <div className="keyboard">
         <HotKeys keyMap={keyMap.keys.octaves} handlers={octaves_handlers}>
-          <div className="octaveboard">{ octaveboard }</div>
+          <div className="octaveboard">{ octaveboard(this.state.currentOctave) }</div>
         </HotKeys>
         <HotKeys keyMap={keyMap.keys.notes} handlers={notes_handlers}>
           <div className="noteboard">{ noteboard }</div>

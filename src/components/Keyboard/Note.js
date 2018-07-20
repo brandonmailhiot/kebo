@@ -4,17 +4,18 @@ import classNames from 'classnames'
 
 export default class Note extends Component {
   render() {
-    const { displayName } = this.props;
+    const { displayName, input, pitch } = this.props;
+    const isPressed = input.map(i => i.substr(0, i.length-1)).includes(pitch);
 
     return (
       <HotKeys>
         <div className={classNames({
           "note-container": true,
-          "pressed": false
+          "pressed": isPressed
         })}>
           <p className={classNames({
             "note-displayName": true,
-            "pressed": false
+            "pressed": isPressed
           })}>
             { displayName }
           </p>
