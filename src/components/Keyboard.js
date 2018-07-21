@@ -88,6 +88,7 @@ export default class Keyboard extends Component {
       }, 23)
     });
 
+    this.state.SynthJS.update({ smoothingTimeConstant: 0.92 });
     this.state.SynthJS.play();
   }
 
@@ -139,6 +140,7 @@ export default class Keyboard extends Component {
         }, 23)
       });
 
+      this.state.SynthJS.update({ smoothingTimeConstant: 0.92 });
       this.state.SynthJS.play();
     }
     else {

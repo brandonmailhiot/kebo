@@ -1,7 +1,12 @@
 .analyser-canvas {
   position: absolute;
-  top: 488px;
+  top: 150px;
   left: 348px;
   background-color: transparent;
-  transform: rotateX(180deg);
+  background-image: linear-gradient(rgba(62, 118, 155, 0.23) 0%, rgba(217, 217, 251, 0.02) 50%, rgba(#150625, 0.95) 100%);
+  border-top: 1px solid rgba($green, 0.15);
+  border-left: 1px solid rgba($blue, 0.2);
+  border-right: 1px solid rgba($orange, 0.03);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }
