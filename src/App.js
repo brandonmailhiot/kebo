@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Keyboard from './components/Keyboard';
 import MainFX from './components/MainFX';
+import Analyser from './components/Analyser';
 import Logo from './components/Logo';
 
 import './styles/index.scss';
@@ -14,7 +15,8 @@ export default class App extends Component {
       detune: 0,
       gain: 500,
       distortion: 0,
-      reverb: 0.01
+      reverb: 0.01,
+      analyserData: {}
     };
   }
 
@@ -34,6 +36,10 @@ export default class App extends Component {
     this.setState({ reverb: amount });
   }
 
+  setAnalyserData = (data) => {
+    this.setState({ analyserData: data })
+  }
+
   render() {
     return (
       <div className="app-container">
@@ -44,6 +50,7 @@ export default class App extends Component {
             gain={this.state.gain}
             distortion={this.state.distortion}
             reverb={this.state.reverb}
+            setAnalyserData={this.setAnalyserData}
           />
           <MainFX 
             detune={this.state.detune}
@@ -54,6 +61,9 @@ export default class App extends Component {
             onGain={this.onGain}
             onDistortion={this.onDistortion}
             onReverb={this.onReverb}
+          />
+          <Analyser 
+            analyserData={this.state.analyserData}
           />
         </div>
       </div>

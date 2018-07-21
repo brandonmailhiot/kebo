@@ -4,7 +4,6 @@ import SynthJS from 'synth-javascript';
 
 import Note from './Keyboard/Note';
 import Octave from './Keyboard/Octave';
-
 import { keyMap } from '../keymap';
 
 export default class Keyboard extends Component {
@@ -15,14 +14,22 @@ export default class Keyboard extends Component {
       pressCount: 0,
       currentOctave: 4,
       SynthJS: new SynthJS({}),
+      interval: null,
       input: []
     }
   }
 
+  /**
+   * SET OCTAVE event handler for <Octave />
+   */
   setOctave = (event) => {
     this.setState({ currentOctave: event.key });
   }
 
+
+  /**
+   * KEY DOWN event handler for <Note />
+   */
   onKeyDown = (event) => {
     if (event.repeat) return;
 
@@ -36,7 +43,7 @@ export default class Keyboard extends Component {
       if (keyMap.keys.notes[key].sequence === event.key) {
         pitch = key.substr(0, key.length - 2);
       }
-    })
+    });
 
     if (this.state.pressCount > 0) {
       const input = [pitch + this.state.currentOctave, ...this.state.input];
@@ -71,13 +78,32 @@ export default class Keyboard extends Component {
       });
     }
 
-    this.state.SynthJS.play()
+    // prevent multiple intervals when playing chords
+    clearInterval(this.state.interval);
+
+    this.setState({
+      interval: setInterval(() => {
+        let array = this.state.SynthJS.getAnalyserFrequency();
+        this.props.setAnalyserData(array);
+      }, 23)
+    });
+
+    this.state.SynthJS.play();
   }
 
+
+
+  /**
+   * KEY UP event handler for <Note />
+   */
   onKeyUp = (event) => {
     if (event.repeat) return;
 
     this.state.SynthJS.stop();
+
+    // prevent multiple intervals when playing chords
+    clearInterval(this.state.interval);
+
     const { detune, gain, distortion, reverb } = this.props;
     const distortionEffect = distortion > 0 ? `@distortion ${distortion}/4x, ` : ``;
     const reverbEffect = reverb > 1 ? `@reverb 4/${reverb}/5, ` : ``;
@@ -102,19 +128,35 @@ export default class Keyboard extends Component {
             i ${input.join(' + ')}
           `
         }),
-        input
+        input,
+        interval: null
       });
+
+      this.setState({
+        interval: setInterval(() => {
+          let array = this.state.SynthJS.getAnalyserFrequency();
+          this.props.setAnalyserData(array);
+        }, 23)
+      });
+
       this.state.SynthJS.play();
     }
     else {
       this.setState({
         pressCount: 0,
         SynthJS: new SynthJS({ notes: `` }),
-        input: []
+        input: [],
+        interval: null
       });
+
+      this.props.setAnalyserData([[0]]);
     }
   }
 
+
+  /**
+   * RENDER
+   */
   render() {
     const octaveClasses = '𝄞 1 2 3 4 5 6 7'.split(' ');
     const noteClasses = [
