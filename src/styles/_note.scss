@@ -3,13 +3,12 @@
   height: 62px;
   width: 80px;
   background-color: rgba(6,10,22,0.905);
-  text-align: center;
   border: 0px solid rgba(0,0,0,0);
   transition-duration: 0.3s;
 
   &.pressed {
     background-color: rgba(6,10,22,0.945);
-    box-shadow: inset 0px -2px 0px 0 rgba($orange,1);
+    box-shadow: inset 0px -1px 0px 0 rgba($orange,1);
   }
 }
 
@@ -17,8 +16,7 @@
   color: rgba(255,185,50,0.5);
   font-size: 16px;
   margin-top: 20px;
-  text-align: left;
-  margin-left: 30px;
+  text-align: center;
   position: relative;
   top: 20px;
 

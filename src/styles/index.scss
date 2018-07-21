@@ -5,9 +5,9 @@ $green:rgb(164, 255, 61);
 $blue: rgb(32, 194, 186);
 $pink: rgb(224, 47, 150);
 $purple: rgb(86, 67, 255);
-$keyboard-border-bottom: 2px solid $blue;
+$keyboard-border-bottom: 1px solid $blue;
 $orange: rgba(255,185,50,0.9);
-$octave-border-top: 2px solid $orange;
+$octave-border-top: 1px solid $orange;
 
 @import url('https://fonts.googleapis.com/css?family=Ubuntu');
 @import 'app';
