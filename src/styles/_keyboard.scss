@@ -6,6 +6,7 @@
   background-image: $linear-gradient;
   width: max-content;
   border-bottom: $keyboard-border-bottom;
+  border-bottom-left-radius: 30px;
 }
 
 .noteboard {
@@ -51,6 +52,7 @@
       border-width: 1px;
       border-bottom-width: 61px;
       margin-top: 20px;
+      border-bottom-left-radius: 30px;
     }
   
     div:nth-of-type(1) .note-container .note-displayName {
