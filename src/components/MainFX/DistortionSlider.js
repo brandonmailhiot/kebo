@@ -3,20 +3,8 @@ import Slider from 'rc-slider';
 import classNames from 'classnames';
 
 export default class DistortionSlider extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      distortion: this.props.distortion
-    };
-  }
-
-  onDistortion = (value) => {
-    this.setState({distortion: value});
-    this.props.onDistortion(value);
-  }
-
   render() {
+    const { distortion, setFX } = this.props;
     const marks = {
       0: '100%',
       10: '-',
@@ -37,18 +25,18 @@ export default class DistortionSlider extends Component {
     return (
       <div className="distortion-slider">
         <h2 className={classNames({
-            "title": true,
-            "active": this.state.distortion >= step,
-          })
-        }>Fuzz</h2>
+          "title": true,
+          "active": distortion >= step,
+        })}>Fuzz</h2>
+
         <Slider
           className={"slider"}
           vertical={true}
           min={min}
           max={max}
           step={step}
-          defaultValue={this.props.defaultDistortion}
-          onChange={this.onDistortion}
+          defaultValue={distortion}
+          onChange={(value) => setFX('distortion', value)}
           marks={marks}
         />
       </div>

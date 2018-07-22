@@ -9,32 +9,29 @@ export default class MainFX extends Component {
   render() {
     const {
       detune,
-      onDetune,
       gain,
-      onGain,
       distortion,
-      onDistortion,
       reverb,
-      onReverb
+      setFX
     } = this.props;
 
     return (
       <div>
         <DetuneSlider
-          defaultDetune={detune}
-          onDetune={onDetune}
+          detune={detune}
+          setFX={setFX}
         />
         <GainSlider
-          defaultGain={gain}
-          onGain={onGain}
+          gain={gain}
+          setFX={setFX}
         />
         <DistortionSlider
-          defaultDistortion={distortion}
-          onDistortion={onDistortion}
+          distortion={distortion}
+          setFX={setFX}
         />
         <ReverbSlider
-          defaultReverb={reverb}
-          onReverb={onReverb}
+          reverb={reverb}
+          setFX={setFX}
         />
       </div>
     )

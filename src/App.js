@@ -16,28 +16,16 @@ export default class App extends Component {
       gain: 500,
       distortion: 0,
       reverb: 0.01,
-      analyserData: {}
+      frequencyData: []
     };
   }
 
-  onDetune = (amount) => {
-    this.setState({ detune: amount });
+  setFX = (type, amount) => {
+    this.setState({ [type]: amount });
   }
 
-  onGain = (amount) => {
-    this.setState({ gain: amount });
-  }
-
-  onDistortion = (amount) => {
-    this.setState({ distortion: amount });
-  }
-
-  onReverb = (amount) => {
-    this.setState({ reverb: amount });
-  }
-
-  setAnalyserData = (data) => {
-    this.setState({ analyserData: data })
+  setFrequencyData = (frequencyData) => {
+    this.setState({ frequencyData })
   }
 
   render() {
@@ -50,20 +38,17 @@ export default class App extends Component {
             gain={this.state.gain}
             distortion={this.state.distortion}
             reverb={this.state.reverb}
-            setAnalyserData={this.setAnalyserData}
+            setFrequencyData={this.setFrequencyData}
           />
           <MainFX 
             detune={this.state.detune}
             gain={this.state.gain}
             distortion={this.state.distortion}
             reverb={this.state.reverb}
-            onDetune={this.onDetune}
-            onGain={this.onGain}
-            onDistortion={this.onDistortion}
-            onReverb={this.onReverb}
+            setFX={this.setFX}
           />
           <Analyser 
-            analyserData={this.state.analyserData}
+            frequencyData={this.state.frequencyData}
           />
         </div>
       </div>

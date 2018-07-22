@@ -3,20 +3,8 @@ import Slider from 'rc-slider';
 import classNames from 'classnames';
 
 export default class GainSlider extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      gain: this.props.gain
-    };
-  }
-
-  onGain = (value) => {
-    this.setState({gain: value});
-    this.props.onGain(value);
-  }
-
   render() {
+    const { gain, setFX } = this.props;
     const marks = {
       0: '100%',
       10: '-',
@@ -37,18 +25,18 @@ export default class GainSlider extends Component {
     return (
       <div className="gain-slider">
         <h2 className={classNames({
-            "title": true,
-            "active": this.state.gain >= step,
-          })}
-        >Volume</h2>
+          "title": true,
+          "active": gain >= step,
+        })}>Volume</h2>
+
         <Slider
           className={"slider"}
           vertical={true}
           min={min}
           max={max}
           step={step}
-          defaultValue={this.props.defaultGain}
-          onChange={this.onGain}
+          defaultValue={gain}
+          onChange={(value) => setFX('gain', value)}
           marks={marks}
         />
       </div>

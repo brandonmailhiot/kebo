@@ -1,24 +1,18 @@
 .kebo-logo {
   position: absolute;
-  top: 0px;
-  left: 40px;
   font-size: 48px;
-  color: white;
-  background-color: transparent;
   padding: 250px 50px 80px 260px;
-  left: -265px;
-  top: -304px;
-  transform: rotate(45deg);
+  left: -235px;
+  top: -300px;
 
   p {
     position: relative;
-    top: -123px;
-    left: 45px;
-    transform: rotate(-45deg);
-    color: white;
+    font-weight: 100;
+    color: #ada5ff;
     padding: 0px 10px;
-    text-shadow: 3px 1px 0px $orange;
+    text-shadow: 0px 0px 17px #8779ff;
     font-size: 40px;
-    letter-spacing: 2px;
+    letter-spacing: 8px;
+    text-transform: uppercase;
   }
 }

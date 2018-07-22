@@ -3,20 +3,8 @@ import Slider from 'rc-slider';
 import classNames from 'classnames';
 
 export default class ReverbSlider extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      reverb: this.props.reverb
-    };
-  }
-
-  onReverb = (value) => {
-    this.setState({reverb: value});
-    this.props.onReverb(value);
-  }
-
   render() {
+    const { reverb, setFX } = this.props;
     const marks = {
       0: '100%',
       10: '-',
@@ -38,7 +26,7 @@ export default class ReverbSlider extends Component {
       <div className="reverb-slider">
         <h2 className={classNames({
             "title": true,
-            "active": this.state.reverb >= step,
+            "active": reverb >= step,
           })}
         >Reverb</h2>
         <Slider
@@ -47,8 +35,8 @@ export default class ReverbSlider extends Component {
           min={min}
           max={max}
           step={step}
-          defaultValue={this.props.defaultReverb}
-          onChange={this.onReverb}
+          defaultValue={reverb}
+          onChange={(value) => setFX('reverb', value)}
           marks={marks}
         />
       </div>

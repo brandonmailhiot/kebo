@@ -84,7 +84,7 @@ export default class Keyboard extends Component {
     this.setState({
       interval: setInterval(() => {
         let array = this.state.SynthJS.getAnalyserFrequency();
-        this.props.setAnalyserData(array);
+        this.props.setFrequencyData(array);
       }, 23)
     });
 
@@ -136,7 +136,7 @@ export default class Keyboard extends Component {
       this.setState({
         interval: setInterval(() => {
           let array = this.state.SynthJS.getAnalyserFrequency();
-          this.props.setAnalyserData(array);
+          this.props.setFrequencyData(array);
         }, 23)
       });
 
@@ -151,7 +151,7 @@ export default class Keyboard extends Component {
         interval: null
       });
 
-      this.props.setAnalyserData([[0]]);
+      this.props.setFrequencyData([[0]]);
     }
   }
 
