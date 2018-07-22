@@ -85,10 +85,10 @@ export default class Keyboard extends Component {
       interval: setInterval(() => {
         let array = this.state.SynthJS.getAnalyserFrequency();
         this.props.setFrequencyData(array);
-      }, 23)
+      }, 1)
     });
 
-    this.state.SynthJS.update({ smoothingTimeConstant: 0.92 });
+    this.state.SynthJS.update({ smoothingTimeConstant: 0.98 });
     this.state.SynthJS.play();
   }
 
@@ -137,10 +137,10 @@ export default class Keyboard extends Component {
         interval: setInterval(() => {
           let array = this.state.SynthJS.getAnalyserFrequency();
           this.props.setFrequencyData(array);
-        }, 23)
+        }, 1)
       });
 
-      this.state.SynthJS.update({ smoothingTimeConstant: 0.92 });
+      this.state.SynthJS.update({ smoothingTimeConstant: 0.98 });
       this.state.SynthJS.play();
     }
     else {
